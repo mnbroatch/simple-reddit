@@ -1,0 +1,32 @@
+.template {
+	display:none;
+}
+
+.vote-area {
+	display:inline-block;
+	min-width:20px;
+}
+
+.message {
+	display:flex;
+	align-items:center;
+}
+
+.text {
+	display:inline-block;
+}
+
+.message-buttons {
+	display:inline-block;
+}
+
+.up-arrow, .down-arrow {
+	font-size:1.4em;
+	padding-bottom:7px;
+	padding-top:0;
+	line-height:.6em;
+}
+
+.score {
+	text-align:center;
+}

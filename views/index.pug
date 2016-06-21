@@ -1,0 +1,29 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		script(src="/bower_components/jquery/dist/jquery.min.js")
+		script(src="/bower_components/moment/moment.js")
+		script(src="/js/main.js")
+		link(href='/css/style.css', rel='stylesheet') 
+		title
+	body
+		h1 Testy McTestface
+		#message-area
+			each post in posts
+				.message-box(data-id=post.id)
+					.time #{post.timeCreated}
+					.message
+						div.vote-area
+							button.up-arrow &#65514
+							div.score #{post.score} 
+							button.down-arrow &#65516
+						div.text #{post.text}
+						div.message-buttons
+							button.edit-button Edit
+							button.delete-button Delete
+
+
+
+
+
