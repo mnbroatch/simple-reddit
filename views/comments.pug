@@ -1,0 +1,49 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		script(src="/bower_components/moment/min/moment.min.js")
+		script(src="/bower_components/jquery/dist/jquery.min.js")
+		script(src="/bower_components/moment/moment.js")
+		script(src="/js/comments.js")
+		link(href='/css/comments.css', rel='stylesheet') 
+		title
+	body
+		h1 Comments McCommentface
+			#message-area
+				.message-box(data-id=comments[0].postId)
+					.message
+						div.text #{comments[0].postText}
+
+			if(comments.length > 0)
+				#comment-area
+					each comment in comments
+						.comment-box(data-id=comment.id data-postId=comment.postId)
+							.time #{comment.createdAt}
+							.comment
+								div.text #{comment.text}
+								div.comment-buttons
+									button.edit-button Edit
+									button.delete-button Delete
+							.edit-box
+								input.edit-comment-field(type="text" value=comment.text)
+								button.edit-save-button Save
+								button.edit-cancel-button Cancel
+			else
+				h2 no comments!
+
+		.comment-box.template
+			.comment-box
+				.time time
+				.comment
+					div.text text
+					div.comment-buttons
+						button.edit-button Edit
+						button.delete-button Delete
+				.edit-box
+					input.edit-comment-field(type="text")
+					button.edit-save-button Save
+					button.edit-cancel-button Cancel
+
+
+

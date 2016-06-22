@@ -3,22 +3,22 @@
 const express = require('express');
 
 let router = express.Router();
-let Post = require('../models/post');
+let Comment = require('../models/comment');
 
-router.get('/', (req,res) => {
-	Post.retrieveAll()
-	.then( posts => {
-		res.send(posts);
+router.post('/', (req,res) => {
+	Comment.create(req.body.text, req.body.postId)
+	.then( comment => {
+		res.send(comment);
 	})
 	.catch( err => {
 		res.status(400).send(err); 
 	});
 });
 
-router.post('/', (req,res) => {
-	Post.createPost(req.body.text)
-	.then( post => {
-		res.send(post);
+router.get('/', (req,res) => {
+	Comment.retrieveAll()
+	.then( comments => {
+		res.send(comments);
 	})
 	.catch( err => {
 		res.status(400).send(err); 
@@ -26,9 +26,9 @@ router.post('/', (req,res) => {
 });
 
 router.delete('/', (req,res) => {
-	Post.delete(req.body.id)
-	.then( post => {
-		res.send(post);
+	Comment.delete(req.body.id)
+	.then( comment => {
+		res.send(comment);
 	})
 	.catch( err => {
 		res.status(400).send(err); 
@@ -36,9 +36,9 @@ router.delete('/', (req,res) => {
 });
 
 router.put('/', (req,res) => {
-	Post.update(req.body)
-	.then( post => {
-		res.send(post);
+	Comment.update(req.body)
+	.then( comment => {
+		res.send(comment);
 	})
 	.catch( err => {
 		res.status(400).send(err); 
@@ -46,4 +46,3 @@ router.put('/', (req,res) => {
 });
 
 module.exports = router;
-

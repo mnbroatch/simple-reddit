@@ -2,11 +2,6 @@
 	display:none;
 }
 
-.vote-area {
-	display:inline-block;
-	min-width:20px;
-}
-
 .message {
 	display:flex;
 	align-items:center;
@@ -16,7 +11,7 @@
 	display:inline-block;
 }
 
-.message-buttons {
+.comment-buttons {
 	display:inline-block;
 }
 

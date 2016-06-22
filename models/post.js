@@ -13,12 +13,17 @@ exports.retrieveAll = () => {
 	});
 }
 
-exports.create = (text) => {
+exports.createPost = (text) => {
 	return new Promise( (resolve,reject) => {
-		db.query('insert into posts values (?,?,?,?)',uuid(),moment().toISOString(), text, 0, (err) => {
+		let postToAdd = {
+			id:uuid(),
+			createdAt:moment().toISOString(),
+			text:text,
+			score:0
+		};
+		db.query('insert into posts set ?',postToAdd, (err) => {
 			if(err)return reject(err);
-			// try with all, or without limit  
-			db.query('select * from posts order by timeCreated desc limit 1', (err, post) => { 
+			db.query('select * from posts order by createdAt desc limit 1', (err, post) => { 
 				if(err) return reject(err);
 				resolve(post);
 			});
@@ -40,7 +45,7 @@ exports.delete = id => {
 
 exports.update = (newMessage) => {
 	return new Promise( (resolve,reject) => {
-		db.query('update posts set text = ?, score = ? where id = ?',newMessage.text, newMessage.score, newMessage.id, (err) => {
+		db.query('update posts set text=?, score=? where id=?',[newMessage.text, newMessage.score, newMessage.id], (err) => {
 			if(err)return reject(err);
 			db.query('select * from posts where id = ?',newMessage.id, (err, post) => { 
 				if(err) return reject(err);

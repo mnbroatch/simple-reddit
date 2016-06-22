@@ -2,6 +2,7 @@ doctype html
 html(lang="en")
 	head
 		meta(charset="UTF-8")
+		script(src="/bower_components/moment/min/moment.min.js")
 		script(src="/bower_components/jquery/dist/jquery.min.js")
 		script(src="/bower_components/moment/moment.js")
 		script(src="/js/main.js")
@@ -9,19 +10,49 @@ html(lang="en")
 		title
 	body
 		h1 Testy McTestface
+		#new-message-area
+			input.message-field(type="text" placeholder="Message")
+			button.submit-button Submit
 		#message-area
-			each post in posts
-				.message-box(data-id=post.id)
-					.time #{post.timeCreated}
-					.message
-						div.vote-area
-							button.up-arrow &#65514
-							div.score #{post.score} 
-							button.down-arrow &#65516
-						div.text #{post.text}
-						div.message-buttons
-							button.edit-button Edit
-							button.delete-button Delete
+			if (posts.length > 0)
+				each post in posts
+					.message-box(data-id=post.id)
+						.time #{post.createdAt}
+						.message
+							div.vote-area
+								button.up-arrow &#65514
+								div.score #{post.score} 
+								button.down-arrow &#65516
+							div.text #{post.text}
+							div.message-buttons
+								button.edit-button Edit
+								button.delete-button Delete
+						.edit-box
+							input.edit-message-field(type="text" value=post.text)
+							button.edit-save-button Save
+							button.edit-cancel-button Cancel
+			else
+				h3 No messages yet!
+
+			.message-box.template
+				.time 
+				.message
+					div.vote-area
+						button.up-arrow &#65514
+						div.score 
+						button.down-arrow &#65516
+					div.text 
+					div.message-buttons
+						button.edit-button Edit
+						button.delete-button Delete
+				.edit-box
+					input.edit-message-field(type="text")
+					button.edit-save-button Save
+					button.edit-cancel-button Cancel
+
+
+
+
 
 
 
